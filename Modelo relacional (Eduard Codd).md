@@ -1,0 +1,67 @@
+.
+- La estructura fundamental del Modelo Relacional es la **relación**
+	- Sean A = {a, b, c} y B = {1, 2} dos conjuntos de valores. (Grado u orden 2)
+	- Una relación R de orden n definida sobre A y B, es un subconjunto del producto cartesiano A x B.
+	- Ejemplo de relaciones de orden 2 sobre A y B:
+		- R1 = {(a, 1), (a, 2), (c, 2)} es de cardinalidad 3
+		- R2 = {(a, 1), (b,1)} es de cardinalidad 2
+	- Cada elemento de la relación tiene el nombre de tupla
+		- (a, 1) es una tupla de R1
+	- El número de tuplas es la cardinalidad de la relación
+		- R1 tiene cardinalidad 3, mientras que R2 tiene cardinalidad 2
+	- Ejemplo de código de estudiantes y nombres de estudiantes
+- Los elementos del diseño relacional son los **atributos**.  Cada atributo toma sus posibles valores en un conjunto llamado **dominio**.
+	- En el ejemplo anterior A y B son los atributos de R1 y de R2
+	- No puede haber atributos diferentes con el mismo nombre
+	- Los **dominios** de los atributos pueden ser finitos o infinitos
+		- Tipos de dominio típicos: integer, real, date, datetime, character, string, etc.
+		- Hay un valor especial para desconocido o "sin valor": **NULL**
+		- **NULL** no es lo mismo que cero o que una cadena vacía
+	- Atributos distintos pueden tener el mismo dominio
+	- El conjunto de atributos de un problema es su universo **T**, que es siempre finito
+		- En el anterior ejemplo, T = {A, B}
+		- Caso 2
+			- Universo (T) = {A, B, C, D}
+			- Atributos: A, B, C, D
+			- Dominios:
+				- Dom(A) = {a, b, c, d}
+				- Dom(B) = {1, 2, 3, 4, 5}
+				- Dom(C) = ℕ (conjunto de los número naturales)
+				- Dom(D) = {x, y, x, t, u, v}
+- Es frecuente usar tablas para representar las relaciones de forma visual:
+	- El número de columnas es el grado de la relación
+	- El número de filas es su cardinalidad
+	- Cada columna está unida a un nombre de atributo
+- Ejemplo
+	- Dom(A) = {a, b, c}, Dom(B) = ℕ, Dom(C) = {x, y}
+	- R = {(a, 5, y), (c, 10, x), (b, 1, y)}
+	- La relación R se representa así:
+		- ![[Pasted image 20240906111304.png]]
+- Un **descriptor** X es un subconjunto de **T**:
+	- X = {A, C}
+	- Abusando de la notación, escribiremos X = AC
+- Si X e Y son ambos descriptores en un cierto contexto, y se tiene que dado el valor de X, está unívocamente determinado el de Y:
+	- Entre X e Y tiene lugar la **[[Dependencia funcional]]** X -> Y
+	- Se lee como "X implica Y", o bien, "Y depende funcionalmente de X"
+	- Ejemplos:
+		- Código de estudiante implica el nombre del estudiante
+		- NUIP implica nombre del ciudadano
+- Dada una relación, se denomina **esquema** al par formado por el conjunto de atributos sobre el que está definida y el conjunto de dependencias entre ellos.
+	- Es frecuente denominar relación tanto a una relación concreta como al esquema
+	- El par R(T, L), donde T es el universo de atributos y L el conjunto de dependencias entre ellos, se denomina **relación universal** 
+- **Dependencia parcial/total:** 
+	- Si X -> Y, y no existe ningún subconjunto propio Z perteneciente a X, tal que Z -> Y, entonces la dependencia X -> Y es total
+	- En caso contrario, es parcial
+	- El conjunto X se denomina implicantes
+	- El conjunto Y se denomina implicados
+- [[Axiomas de Armstrong]]
+- **Clave** o **llave** de una relación:
+	- Dada una relación R definida sobre el conjunto de atributos T, una **superclave** es un descriptor K, de forma que K -> T
+	- Si K es el subconjunto más pequeño posible de T, entonces se dice que K es **llave candidata**.
+	- De entre todas las claves candidatas:
+		- Se escogerá una que será la **llave primaria** o, simplemente, la **llave**
+		- El resto se llamarán **llaves alternativas**
+- Un atributo que forma parte de alguna llave, se dice que es **atributo clave, atributo primario o atributo principal**
+	- **Integridad de entidad**: no puede insertarse una tupla si se desconoce el valor de algún atributo primario
+
+- [[Traducción del MER al MR]] 
