@@ -3,36 +3,94 @@ Los axiomas de Armstrong son reglas que nos permiten inferir todas las dependenc
 
 Sean A, B, C y D subconjuntos de atributos de una relación R. Los siguientes axiomas se sostienen (note que aquí AC significa la unión del conjunto A y el conjunto C):
 
-- **Reflexividad**. Si B es un subconjunto de A, entonces A → B. Esto también implica que A → A siempre se sostiene. Las dependencias funcionales de este tipo se llaman dependencias funcionales triviales.
+### **Reflexividad**. 
+
+Si B es un subconjunto de A, entonces A → B. Esto también implica que A → A siempre se sostiene. Las dependencias funcionales de este tipo se llaman dependencias funcionales triviales.
 
 **Ejemplo:**  
 
-Supongamos que tenemos una tabla `Estudiante(ID_Estudiante, Nombre, Apellido)` donde `ID_Estudiante` es la clave primaria.  
-Podemos decir que `ID_Estudiante, Nombre → ID_Estudiante` porque `ID_Estudiante` es un subconjunto de `ID_Estudiante, Nombre`. Esto significa que si conocemos el ID y el nombre de un estudiante, podemos determinar su ID (lo cual es trivialmente cierto).
+Supongamos que tenemos una tabla 
+
+**Estudiante**(**ID_Estudiante**, Nombre, Apellido) 
+
+donde **ID_Estudiante** es la clave primaria.   Podemos decir que 
+
+**{ID_Estudiante, Nombre} → ID_Estudiante** 
+
+porque 
+
+**ID_Estudiante** es un subconjunto de **{ID_Estudiante, Nombre}**. 
+
+Esto significa que si conocemos el ID y el nombre de un estudiante, podemos determinar su ID (lo cual es trivialmente cierto).
    
-- **Aumento**. Si A → B, entonces AC → BC.
+### **Aumento**. 
+
+Si A → B, entonces AC → BC.
 
 **Ejemplo:**  
 
-Si en una tabla `Profesor(ID_Profesor, Nombre, Departamento)` se sabe que `ID_Profesor → Nombre`, entonces también se puede inferir que `ID_Profesor, Departamento → Nombre, Departamento`. Es decir, si conocemos el ID del profesor, podemos determinar su nombre, y esto sigue siendo cierto si agregamos el departamento a ambos lados de la dependencia funcional.
+Si en una tabla 
 
-- **Transitividad**: Si X → Y y Y → Z, entonces X → Z.
+**Profesor**(**ID_Profesor**, Nombre, Departamento) 
+
+se sabe que 
+
+**ID_Profesor → Nombre**, 
+
+entonces también se puede inferir que 
+
+**{ID_Profesor, Departamento} → {Nombre, Departamento}**. 
+
+Es decir, si conocemos el **ID del profesor**, podemos determinar su **nombre**, y esto sigue siendo cierto si agregamos el **departamento** a ambos lados de la dependencia funcional.
+
+### **Transitividad**: 
+
+Si X → Y y Y → Z, entonces X → Z.
 
 **Ejemplo:**  
 
-Consideremos dos dependencias funcionales en una tabla `Curso(ID_Curso, Nombre_Curso, ID_Profesor)`:
+Consideremos dos dependencias funcionales en una tabla 
 
-1. `Cédula → Ciudad` 
-2. `Ciudad → Departamento` 
+**Curso**(ID_Curso, Nombre_Curso, ID_Profesor):
 
-Aplicando la transitividad, podemos inferir que `Cédula → Departamento`. 
+1. Cédula → Ciudad 
+2. Ciudad → Departamento 
 
-Las siguientes reglas se pueden derivar a partir de las tres anteriores y se reconocen como Axiomas derivados:
+Aplicando la transitividad, podemos inferir que 
 
-- Unión. Si A → B y A → C, entonces A → BC.
-- Aditividad. Si A → B y X → Y, entonces AX → BY
-- Proyectividad o descomposición. Si A → BC, entonces A → B y A → C.
-- Pseudotransitividad. Si A → B y BC → D, entonces AC → D.
+**Cédula → Departamento**. 
+
+
+### Axiomas derivados
+
+Las siguientes reglas se pueden derivar a partir de las tres anteriores
+
+- **Unión**. Si A → B y A → C, entonces A → BC.
+
+- **Aditividad**. Si A → B y X → Y, entonces AX → BY
+
+- **Proyectividad o descomposición**. Si A → BC, entonces A → B y A → C.
+
+- **Pseudotransitividad**. Si A → B y BC → D, entonces AC → D.
+
+
+### Ejemplo Completo con los Tres Axiomas: Sistema de Reservas
+
+**Supongamos las siguientes dependencias:**
+
+1. **Sala → Capacidad** (una sala determina su capacidad).
+2. **Capacidad** → Equipamiento (cada capacidad tiene un equipamiento estándar).
+3. **Sala → Ubicación** (una sala está en un edificio específico).
+
+**Aplicaciones de los Axiomas:**
+
+1. **Reflexividad:** **Sala → Sala** (es obvio que la sala determina su propio nombre o información).
+   
+2. **Aumentación:** Si **Sala → Capacidad**, entonces **Sala y Fecha → Capacidad y Fecha** (añadiendo la fecha no cambia la relación).
+
+3. **Transitividad:** De **Sala → Capacidad** y **Capacidad → Equipamiento**, podemos deducir **Sala → Equipamiento** (saber la sala nos dice directamente el equipamiento).
+
+
 
 ---
 ### Axiomas de Armstrong Explicados
@@ -86,28 +144,4 @@ En una empresa, si `Departamento → Gerente` (un departamento tiene un gerente)
 - **Aplicación:** Si sabes que un gerente tiene una oficina específica y sabes a qué departamento pertenece ese gerente, puedes determinar qué oficina está asociada con cada departamento.
 
 - **Analogía:** Es como decir que si "saber tu fecha de nacimiento" te dice tu "edad" y "saber tu edad" te dice tu "categoría de edad" (joven, adulto, etc.), entonces saber tu fecha de nacimiento puede determinar tu categoría de edad.
-
-### Ejemplo Completo con los Tres Axiomas: Sistema de Reservas
-
-**Supongamos las siguientes dependencias:**
-
-1. `Sala → Capacidad` (una sala determina su capacidad).
-2. `Capacidad → Equipamiento` (cada capacidad tiene un equipamiento estándar).
-3. `Sala → Ubicación` (una sala está en un edificio específico).
-
-**Aplicaciones de los Axiomas:**
-
-1. **Reflexividad:** `Sala → Sala` (es obvio que la sala determina su propio nombre o información).
-   
-2. **Aumentación:** Si `Sala → Capacidad`, entonces `Sala y Fecha → Capacidad y Fecha` (añadiendo la fecha no cambia la relación).
-
-3. **Transitividad:** De `Sala → Capacidad` y `Capacidad → Equipamiento`, podemos deducir `Sala → Equipamiento` (saber la sala nos dice directamente el equipamiento).
-
-### Importancia de los Axiomas de Armstrong
-
-Los axiomas nos permiten verificar la consistencia de las dependencias funcionales y derivar nuevas dependencias para optimizar las estructuras de las bases de datos. Al aplicarlos, evitamos redundancias, aseguramos la integridad de los datos y creamos sistemas más eficientes y fáciles de gestionar.
-
-- Ver [[Clausura de un conjunto de dependencias funcionales]] 
-
----
 

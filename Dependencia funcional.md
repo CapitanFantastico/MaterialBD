@@ -1,34 +1,17 @@
-.
-- Una dependencia funcional es una relación entre atributos de una misma tabla. 
-
-- Si x e y son atributos de la relación R, se dice que y es <u>funcionalmente dependiente</u> de x (se denota por x → y) si cada valor de x tiene asociado un solo valor de y (x e y pueden constar de uno o varios atributos).
-
-- A x se le denomina <u>determinante</u>, ya que x determina el valor de y. 
-
-- Se dice que el atributo y es <u>completamente dependiente</u> de x si depende funcionalmente de x y no depende de ningún subconjunto de x.
-
-- La dependencia funcional es una noción semántica. Si hay o no dependencias funcionales entre atributos, no lo determina una serie abstracta de reglas, sino, más bien, los modelos mentales del usuario y las reglas de negocio de la organización o empresa para la que se desarrolla el sistema de información.  
-
-- Cada dependencia funcional es una restricción y representa una relación de uno a muchos (o de uno a uno).
+..
+- Imagina que tienes una agenda telefónica. Si sabes el nombre de una persona (por ejemplo, "Juan Pérez"), puedes encontrar su número de teléfono. Esto implica una dependencia funcional:
+	- **Nombre → Número de Teléfono**: El número de teléfono depende del nombre.
+- ==La dependencia funcional es una noción semántica==. Si hay o no dependencias funcionales entre atributos, no lo determina una serie abstracta de reglas, sino, más bien, los modelos mentales del usuario y las reglas de negocio de la organización o empresa para la que se desarrolla el sistema de información.  
+- Es una relación entre atributos (columnas) de una misma tabla. 
+- Si A y B son atributos de la relación R, se dice que B es <u>funcionalmente dependiente</u> de A (se denota por A → B) si cada valor de A tiene asociado un solo valor de B 
+- Cada dependencia funcional es una restricción y representa una relación de uno a uno o de muchos a uno.
+- En otras palabras, si conoces el valor de A, entonces automáticamente sabes el valor de B- A y B pueden constar de uno o varios atributos
+- A es denominado [[Determinante funcional]] , ya que A determina el valor de B.  
 
 
 ---
 
-### Dependencias Funcionales Explicadas
-
-Las **dependencias funcionales** son un concepto clave en el modelado de bases de datos y en la normalización, que ayudan a identificar relaciones lógicas entre los atributos (columnas) de una tabla. Entenderlas puede ser complicado, pero usando ejemplos cotidianos, se vuelven mucho más claras.
-
-### 1. ¿Qué es una Dependencia Funcional?
-
-Una **dependencia funcional** entre dos conjuntos de atributos se denota como `X → Y`, lo que significa que el atributo `Y` está determinado completamente por el atributo `X`. En otras palabras, si conoces el valor de `X`, entonces automáticamente sabes el valor de `Y`.
-
-**Ejemplo:**  
-
-Imagina que tienes una agenda telefónica. Si sabes el nombre de una persona (por ejemplo, "Juan Pérez"), puedes encontrar su número de teléfono. Esto implica una dependencia funcional:
-
-- **Nombre → Número de Teléfono**: El número de teléfono depende del nombre.
-
-### 2. Casos de Dependencias Funcionales
+### Ejemplos
 
 #### Caso 1: Supermercado
 
@@ -84,23 +67,3 @@ Las dependencias funcionales ayudan a evitar inconsistencias y duplicidades en l
 
 - Ver [[Axiomas de Armstrong]] 
 
-
-
-
-
-
-
-
-
-
----
-
-- **Dependencia funcional completa**: A→B, si B depende de A en su totalidad. Ejemplo: Tiene sentido plantearse este tipo de dependencia cuando A está compuesto por más de un atributo. Por ejemplo, supongamos que A corresponde al atributo compuesto: D.N.I._Empleado + Cod._Dpto. y B es Nombre_Dpto. En este caso B depende del Cod_Dpto., pero no del D.N.I._Empleado. Por tanto no habría dependencia funcional completa.
-
-- **Dependencia Funcional Parcial**: Se da cuando algunos atributos a la izquierda de la dependencia son suficientes para determinar los atributos a la derecha. 
-
-- **Dependencia transitiva**: A→B→C. Si A→B y B→C, Entonces decimos que C depende de forma transitiva de A. Ejemplo: Sea A el D.N.I. de un alumno, B la localidad en la que vive y C la provincia. Es un caso de dependencia transitiva A→B →C.
-
-- **Determinante funcional**: Todo atributo, o conjunto de ellos, de los que depende algún otro atributo. Ejemplo: El D.N.I. es un determinante funcional pues atributos como nombre, dirección, localidad, etc, dependen de él.
-
-- **Dependencia multivaluada**: A→→B. Son un tipo de dependencias en las que un determinante funcional no implica un único valor, sino un conjunto de ellos. Un valor de A siempre implica varios valores de B. Ejemplo: CursoBachillerato→→Modalidad. Para primer curso siempre va a aparecer en el campo Modalidad uno de los siguientes valores: Ciencias, Humanidades/Ciencias Sociales o Artes. Igual para segundo curso.

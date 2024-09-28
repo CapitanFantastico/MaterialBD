@@ -3,3 +3,4 @@
 - [[Modelo Entidad Relación (Notación de P. Chen)]]
 - [[Modelo relacional (Eduard Codd)]]
 - [[Modelo Entidad Relación Extendido]] 
+- [[Normalización]] 
