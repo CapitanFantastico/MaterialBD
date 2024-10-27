@@ -4,3 +4,4 @@
 - [[Modelo relacional (Eduard Codd)]]
 - [[Modelo Entidad Relación Extendido]] 
 - [[Normalización]] 
+- [[Algebra relacional]] 
