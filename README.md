@@ -5,3 +5,4 @@
 - [[Modelo Entidad Relación Extendido]] 
 - [[Normalización]] 
 - [[Algebra relacional]] 
+- [[SQL]] 
